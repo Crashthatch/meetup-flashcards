@@ -294,7 +294,28 @@ textarea {
 }
 
 .eventItem{
-    border: 1px solid black;
+    margin: 10px 0px;
+    border: 2px solid #ed1c40;
+}
+.eventHeader{
+    background-color: #ed1c40;
+    color: white;
+    font-family: helvetica,arial,sans-serif;
+    padding: 4px;
+}
+.group{
+    width: 75%;
+    display: inline-block;
+}
+.date{
+    width: 20%;
+    text-align: right;
+    display: inline-block;
+}
+.eventItem .name{
+    text-align: center;
+    font-size: 1.4em;
+    padding: 5px;
 }
 
 .master{
