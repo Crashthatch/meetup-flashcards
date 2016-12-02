@@ -75,16 +75,19 @@ $( function(){
   //Get Meetup access_token from URL.
   if( !window.location.hash ){
     //Start the Oauth process:
+    $('#events').hide()
+    $('.flashcard').hide();
     $('#login a').attr('href', 'https://secure.meetup.com/oauth2/authorize?client_id=mdketodiouiqs72nrd4g21dj2v&response_type=token&redirect_uri='+encodeURIComponent(window.location.href) );
   }
+  else{
+    //There is a hash fragment. Get the access token from it:
+    $('#login').hide();
+    access_token = window.location.hash.match(/access_token=([0-9a-f]*)/)[1];
 
-  //There is a hash fragment. Get the access token from it:
-  $('#login').hide();
-  access_token = window.location.hash.match(/access_token=([0-9a-f]*)/)[1];
+    listEvents();
 
-  listEvents();
-
-  $('#photo').on('click',buttonHandler);
-  $('#next').on('click',buttonHandler);
+    $('#photo').on('click',buttonHandler);
+    $('#next').on('click',buttonHandler);
+  }
 
 })
