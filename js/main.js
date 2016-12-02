@@ -6,15 +6,16 @@ let access_token = null;
 function showNextPhoto(){
   memberShown = members[Math.floor(Math.random()*members.length)];
   $('#photo').attr('src', memberShown['photo']);
-  $('#name').hide()
+  $('.answer').hide()
 }
 
 function revealName(){
-  $('#name').html(memberShown.name).show();
+  $('#attendeeName').html(memberShown.name);
+  $('.answer').fadeIn();
 }
 
 function buttonHandler(){
-  if( $('#name').is(":visible") ){
+  if( $('.answer').is(":visible") ){
     showNextPhoto();
   }
   else{
