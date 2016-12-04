@@ -100,7 +100,7 @@ $( function(){
     listEvents();
 
     $('#photo').on('click',buttonHandler);
-    $('#next').on('click',buttonHandler);
+    $('.answer').on('click',buttonHandler);
   }
 
 })
