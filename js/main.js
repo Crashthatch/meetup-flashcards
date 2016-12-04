@@ -1,12 +1,25 @@
 
 let members = [];
 let memberShown = null;
+let nextMemberToShow = null;
 let access_token = null;
 
 function showNextPhoto(){
-  memberShown = members[Math.floor(Math.random()*members.length)];
+  if( !nextMemberToShow ){ //For first run.
+    memberShown = members[Math.floor(Math.random()*members.length)];
+  }
+  else{
+    memberShown = nextMemberToShow;
+  }
   $('#photo').attr('src', memberShown['photo']);
   $('.answer').hide()
+
+  //Pre-load the next image, ready for once this one is done with.
+  do{
+    nextMemberToShow = members[Math.floor(Math.random()*members.length)];
+  } while( nextMemberToShow == memberShown && members.length > 1) //Do not select the same member twice in a row.
+
+  (new Image()).src = nextMemberToShow['photo'];
 }
 
 function revealName(){
@@ -35,7 +48,6 @@ function listEvents(){
     .then(function(response){
       for( let key in response.results){
         const event = response.results[key];
-        console.log(event);
         const eventItem = $('.eventItem.master').clone().removeClass('master');
         eventItem.find('.name').html(event.name);
         eventItem.find('.group').html(event.group.name);
