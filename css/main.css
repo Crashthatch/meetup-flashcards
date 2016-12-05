@@ -284,7 +284,59 @@ textarea {
 
 
 
+html{
+    height: 100%;
+}
+body{
+    background-color: #f2f2f2;
+    height: 100%;
+}
 
+.header{
+    height: 90px;
+    font-family: 'Pacifico', cursive;
+    background-color: #ed1c40;
+    color: white;
+    font-size: 4em;
+    text-align:center;
+}
+
+.container{
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.16);
+    padding: 10px;
+    background-color: white;
+    max-width: 500px;
+    margin: 5px auto;
+}
+.footerfixwrapper{
+    min-height: calc(100% - 90px - 35px - 10px);
+}
+
+footer{
+    box-sizing: border-box;
+    position: absolute;
+    height: 35px;
+    padding-top: 5px;
+    width: 100%;
+    text-align: center;
+    background-color: #0f1721;
+    color: rgba(255,255,255,0.7);
+    overflow: hidden;
+}
+footer a{
+    color: rgba(255,255,255,0.7);
+}
+.footertext{
+    display: inline-block;
+    font-size: 0.8em;
+    position: relative;
+    top: -13px;
+}
+.addthis_inline_share_toolbox{
+    display: inline-block;
+    height: 31px;
+}
 
 
 #photo {
@@ -293,6 +345,9 @@ textarea {
     min-width: 100%;
 }
 
+#eventsList{
+
+}
 .eventItem{
     margin: 10px 0px;
     border: 2px solid #ed1c40;
@@ -303,6 +358,8 @@ textarea {
     font-family: helvetica,arial,sans-serif;
     padding: 4px;
 }
+
+
 .group{
     width: 75%;
     display: inline-block;
@@ -321,8 +378,9 @@ textarea {
 .answer{
     display: block;
     width: 100%;
+    max-width: 500px;
     position: fixed;
-    top: 50px;
+    top: 150px;
     text-align: center;
     height: 130px;
     padding-top: 70px;
