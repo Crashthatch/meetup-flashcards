@@ -338,6 +338,15 @@ footer a{
     height: 31px;
 }
 
+#login{
+    text-align: center;
+    font-family: helvetica,arial,sans-serif;
+}
+.login-image{
+    width: 100%;
+    max-width: 200px;
+}
+
 
 #photo {
     max-width: 100%;
@@ -347,6 +356,9 @@ footer a{
 
 #eventsList{
 
+}
+#events{
+    text-align: center;
 }
 .eventItem{
     margin: 10px 0px;
