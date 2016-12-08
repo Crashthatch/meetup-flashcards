@@ -375,6 +375,7 @@ footer a{
 .group{
     width: 75%;
     display: inline-block;
+    text-align: left;
 }
 .date{
     width: 20%;
@@ -405,6 +406,23 @@ footer a{
 .buttons button{
     height:50px;
     min-width: 100px;
+
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 16px;
+    vertical-align: middle;
+    line-height: 1;
+    margin-bottom: 16px;
+    border: 1px solid rgba(0,0,0,.12);
+    stroke: transparent;
+    color: #fff!important;
+    background: #ed1c40;
+    border-color: #ed1c40;
+}
+button:active, button:hover{
+    background: #d01031;
+    border-color: #d01031;
 }
 
 .master{
