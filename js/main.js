@@ -46,24 +46,31 @@ function listEvents(){
   //Get the list of events that this user has RSVP'd to:
   $.ajax("https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&rsvp=yes&photo-host=public&page=20&fields=&order=time&desc=false&status=upcoming&access_token="+access_token)
     .then(function(response){
-      for( let key in response.results){
-        const event = response.results[key];
-        const eventItem = $('.eventItem.master').clone().removeClass('master');
-        eventItem.find('.name').html(event.name);
-        eventItem.find('.group').html(event.group.name);
+      $('#events').show();
+      if( response.results.length >= 1 ){
+        for( let key in response.results){
+          const event = response.results[key];
+          const eventItem = $('.eventItem.master').clone().removeClass('master');
+          eventItem.find('.name').html(event.name);
+          eventItem.find('.group').html(event.group.name);
 
-        const eventTime = new Date(event.time);
-        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        eventItem.find('.date').html(eventTime.getDate() +" "+months[eventTime.getMonth()] );
-        eventItem.attr('data-event-id', event.id);
-        eventItem.on('click', selectEvent);
-        $('#eventsList').append(eventItem);
+          const eventTime = new Date(event.time);
+          const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          eventItem.find('.date').html(eventTime.getDate() +" "+months[eventTime.getMonth()] );
+          eventItem.attr('data-event-id', event.id);
+          eventItem.on('click', selectEvent);
+          $('#eventsList').append(eventItem);
+        }
+      }
+      else{
+        $('#eventsList').html("No Events were found. Have you RSVP'd yes to any meetups?");
       }
     });
 }
 
 function selectEvent(event){ //"event" parameter means a JS event, not a meetup.
   $('#events').hide();
+  $('.answer').hide();
   $('.flashcard').show();
   const eventId = $(event.currentTarget).attr('data-event-id');
 

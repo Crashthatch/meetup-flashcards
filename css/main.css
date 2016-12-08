@@ -354,11 +354,14 @@ footer a{
     min-width: 100%;
 }
 
-#eventsList{
-
-}
 #events{
     text-align: center;
+    display: none;
+}
+#eventsList{
+}
+.eventsHeaderMessage{
+    font-weight: 600;
 }
 .eventItem{
     margin: 10px 0px;
@@ -388,9 +391,13 @@ footer a{
     padding: 5px;
 }
 
+
+.flashcard{
+    display: none; /*Hide initially. */
+}
 .answer{
-    display: block;
-    width: 100%;
+    display: none;
+    width: calc( 100% - 20px);
     max-width: 500px;
     position: fixed;
     top: 150px;
