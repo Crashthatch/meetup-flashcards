@@ -95,9 +95,10 @@ $( function(){
   //Get Meetup access_token from URL.
   if( !window.location.hash ){
     //Start the Oauth process:
-    $('#events').hide()
+    $('#events').hide();
     $('.flashcard').hide();
-    $('#login a').attr('href', 'https://secure.meetup.com/oauth2/authorize?client_id=mdketodiouiqs72nrd4g21dj2v&response_type=token&redirect_uri='+encodeURIComponent(window.location.href) );
+    let client_id = ( window.location.hostname == "localhost" ) ? "e8jtad7j3sgr1m19tfoqhiep9q" : "mdketodiouiqs72nrd4g21dj2v";
+    $('#login a').attr('href', 'https://secure.meetup.com/oauth2/authorize?client_id='+client_id+'&response_type=token&redirect_uri='+encodeURIComponent(window.location.href) );
   }
   else{
     //There is a hash fragment. Get the access token from it:
