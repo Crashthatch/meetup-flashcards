@@ -65,6 +65,9 @@ function listEvents(){
       else{
         $('#eventsList').html("No Events were found. Have you RSVP'd yes to any meetups?");
       }
+    }, function(err){
+      console.error("Could not connect to meetup's API. Maybe the token expired.");
+      $('#login').show();
     });
 }
 
@@ -92,18 +95,27 @@ function selectEvent(event){ //"event" parameter means a JS event, not a meetup.
 }
 
 $( function(){
+  //Set the login URL
+  let client_id = ( window.location.hostname == "localhost" ) ? "e8jtad7j3sgr1m19tfoqhiep9q" : "mdketodiouiqs72nrd4g21dj2v";
+  $('#login a').attr('href', 'https://secure.meetup.com/oauth2/authorize?client_id='+client_id+'&response_type=token&redirect_uri='+encodeURIComponent(window.location.href.replace(location.hash,"")));
+
   //Get Meetup access_token from URL.
   if( !window.location.hash ){
     //Start the Oauth process:
     $('#events').hide();
     $('.flashcard').hide();
-    let client_id = ( window.location.hostname == "localhost" ) ? "e8jtad7j3sgr1m19tfoqhiep9q" : "mdketodiouiqs72nrd4g21dj2v";
-    $('#login a').attr('href', 'https://secure.meetup.com/oauth2/authorize?client_id='+client_id+'&response_type=token&redirect_uri='+encodeURIComponent(window.location.href) );
   }
   else{
     //There is a hash fragment. Get the access token from it:
     $('#login').hide();
-    access_token = window.location.hash.match(/access_token=([0-9a-f]*)/)[1];
+    try{
+      access_token = window.location.hash.match(/access_token=([0-9a-f]*)/)[1];
+    }
+    catch( e ){
+      console.error("Hash didn't contain an access token!");
+      $('#login').show();
+      return;
+    }
 
     listEvents();
 
